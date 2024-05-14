@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ルーレット</title>
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="css/sanitize.css" />
+	<link rel="stylesheet" type="text/css" href="css/roulette.css">
+	<!--ここからコード追加-->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/rouletteWheel.js"></script>
+	<script type="text/javascript">
+		// Added the below code
+		let num_play = 10;
+		let prize = 0;
+		let value_global = 0;
+		let money_won, remaining;
+		// Added the below code
+		$(function () {
+			var itemsToShow = 14;
+			var wheel = ["$1,000", "$1", "$20", "Bust", "$1,000", "Bust", "$1", "$3", "Bust", "$5", "$10", "Bust", "$2", "$20"]
+			var items = {};
+			for (var i = 0; i < itemsToShow; i++) {
+				items[i] = wheel[i]
+			}
+			$('#canvas').rouletteWheel({
+				items: items,
+				selected: function (key, value) {
+					alert(value);
+					console.log(value);
+					if (value == "Bust") { value_global = 0; }
+					else if (value == "$1") { value_global = 1; }
+					else if (value == "$2") { value_global = 2; }
+					else if (value == "$3") { value_global = 3; }
+					else if (value == "$5") { value_global = 5; }
+					else if (value == "$10") { value_global = 10; }
+					else if (value == "$20") { value_global = 20; }
+					else { value_global = 1000; }
+					prize += value_global;
+					num_play--;
+					if (prize <= 0) { num_play = 0; }
+					money_won = document.querySelector("#money");
+					money_won.innerHTML = 'You won $' + prize;
+					remaining = document.querySelector("#remain");
+					remaining.innerHTML = 'You can play ' + num_play + ' more times.';
+				},
+				spinText: 'START!',
+			});
+		});
+
+
+	</script>
+	<!--ここまでコード追加-->
+	<title>Wheel of Fotune</title>
+</head>
+<header>
+
+</header>
+<main>
+	<h1>Wheel of Fotune</h1>
+	<section>
+		<canvas id="canvas" width="500" height="500"></canvas>
+	</section>
+	<section id="play">
+		<p id="money">You won: $0</p>
+		<p id="remain">You can play 10 more times.</p>
+	</section>
+</main>
+<footer>
+	<div>
+		&copy 2024 Tamio Kuratomi, Roulette Code &copy 2015 Javier Enriquez
+	</div>
+</footer>
+
+</html>
