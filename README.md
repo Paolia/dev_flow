@@ -1,5 +1,5 @@
 # dev_flow
-## Practice GIT repository for Yuji Takayama  and Tamio Kuratomi team.
+## Practice GIT repository for Yushi Takayama  and Tamio Kuratomi team.
 ## 高山湧司・倉冨民夫チームGIT課題用リポジトリ
 
 ## 内容：練習用WEBデータ
