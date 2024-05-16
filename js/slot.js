@@ -164,7 +164,7 @@ function setup() {
 
 
 function draw() {
-  background(10, 30, 60);
+  background(10, 80, 0);
 
   // 壁を描画. Draw the walls
   strokeWeight(3);
