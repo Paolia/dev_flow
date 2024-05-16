@@ -1,5 +1,5 @@
 //ベクトルクラス（定義・計算)
-
+// score
 class Vec2 {
   /**
    * @param {number} x ベクトルのx成分
@@ -146,8 +146,11 @@ function getRandom_min_max(min, max) {
 let fieldRangeX = [50, 250];
 let fieldRangeY = [50, 300];
 
+let score = 0;
 function setup() {
   createCanvas(640, 360);
+    localStorage.setItem("score", score);
+
 
   player = new Player();
   player.pos = new Vec2(100, 200);
@@ -159,7 +162,7 @@ function setup() {
 
 }
 
-let score = 0;
+
 function draw() {
   background(10, 30, 60);
 
@@ -387,6 +390,7 @@ if(localStorage.getItem("score")){
 
 const save = document.getElementById("save");
 save.addEventListener("click", () =>{
+  console.log("save")
   if(localStorage.getItem("score")){
     if (Number(localStorage.getItem("score")) < score) {
       localStorage.setItem("score", score);
