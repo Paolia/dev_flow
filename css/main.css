@@ -122,3 +122,25 @@ button:active {
     translate: 3px 3px;
     filter:drop-shadow(3px 3px 2px rgb(0 0 0));
 }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+    display: none;
+    position: absolute;
+    background-color: rgb(225, 50, 80);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 400;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    display: block;
+}
