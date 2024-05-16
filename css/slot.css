@@ -35,3 +35,19 @@ p{
 /* canvas {
 } */
 
+#save{
+  color:rgb(200, 200, 0);
+  width:60px;
+  border-radius: 20px;
+  background-color: aliceblue;
+  text-align: center;
+  font-weight: bold;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
+#result{
+  color:rgb(200, 200, 0);
+  text-align: center;
+  font-weight: bold;
+}

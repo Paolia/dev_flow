@@ -374,4 +374,32 @@ function draw() {
   text(score, 600, 40);
 }
 
+// ======スコア=====
+// $('save').on("click", fanction(){
+//   localStorage.setItem("save",score)
+// })
+const result = document.getElementById('result');
+
+if(localStorage.getItem("score")){
+  const s = localStorage.getItem("score");
+  result.innerHTML = "最高記録：" + s + " コ";
+}
+
+const save = document.getElementById("save");
+save.addEventListener("click", () =>{
+  if(localStorage.getItem("score")){
+    if (Number(localStorage.getItem("score")) < score) {
+      localStorage.setItem("score", score);
+      alert("スコア：" + score + "を保存しました");
+      const s = localStorage.getItem("score");
+      result.innerHTML = "最高記録：" + s + " コ";
+    } else {
+      alert("スコア：" + score + "は最高記録を超えていないため保存しません。");
+    }
+  }
+})
+
+
+// =====タイマー=====
+
 
