@@ -29,7 +29,7 @@ function hand() {
 // カードの数を返す関数
 function suuchi(num) {
     let str = String(num);
-    if ((str[1] == 1) && (str[2] == 0)) {
+    if ((str[1] == 0) && (str[2] == 1)) {
         return "A";
     } else {
         let kaz = str[1] + str[2];
@@ -55,10 +55,12 @@ function kakekinshori() {
 }
 
 // 初回の配布（2枚ずつ）
-let pl = 0, pn = 0;
+let pl = 0;
+let pn = [];
 let px;
 let pcon = 0;
-let dl = 0, dn = 0;
+let dl = 0;
+let dn = [];
 let dx;
 let dcon = 0;
 let l = 0;
@@ -107,8 +109,8 @@ start.addEventListener('click', function (e) {
 // ゲーム開始・初回配布（2枚ずつ）の関数
 function game_play() {
     pcon = 0; dcon = 0;
-    pl = 0; pn = 0;
-    dl = 0; dn = 0;
+    pl = 0; pn = [];
+    dl = 0; dn = [];
     // ボタン表示
     start.style.display = "none";
     replay.style.display = "none";
@@ -121,17 +123,7 @@ function game_play() {
         pl = hand();
         px = document.querySelector("#p" + l);
         $(px).html('<img src="img/deck/' + pl + '.png" class="card">');
-        pn = suuchi(pl);
-        if (pn != "A") {
-            pcon += pn;
-            //console.log("player", pn, pcon);
-        } else if (pcon <= 10) {
-            pcon += 11;
-            //console.log("player", pn, pcon);
-        } else {
-            pcon += 1;
-            //console.log("player", pn, pcon);
-        }
+        pn.push(suuchi(pl));
 
         // ディーラー
         dl = hand();
@@ -142,40 +134,61 @@ function game_play() {
         } else {
             $(dx).html('<img src="img/deck/' + dl + '.png" class="card">');
         }
-        dn = suuchi(dl);
-        if (dn != "A") {
-            dcon += dn; //console.log("dealer", dn, dcon);
-        } else if (dcon <= 10) {
-            dcon += 11; //console.log("dealer", dn, dcon);
-        } else {
-            dcon += 1; //console.log("dealer", dn, dcon);
-        }
+        dn.push(suuchi(dl));
     }
     //初回配布ここまで
+
+    // A処理 - プレイヤー
+    for (let h = 0; h < 2; h++) {
+        if (pn[h] == "A") {
+            pcon += 11;
+        } else {
+            pcon += pn[h];
+        }
+    }
+    if ((pn.includes("A")) && (pcon > 21)) {
+        pcon -= 10;
+    }
+
+    // A処理 - ディーラー
+    for (let g = 0; g < 2; g++) {
+        if (dn[g] == "A") {
+            dcon += 11;
+        } else {
+            dcon += dn[g];
+        }
+    }
+    if ((dn.includes("A")) && (dcon > 21)) {
+        dcon -= 10;
+    }
 
     //初回配布の時点での21オーバー判定
     if ((pcon > 21) && (dcon > 21)) {
         //引き分け処理
+        calling.style.display = "block";
         calling.innerHTML = 'Push. Neither Wins.';
         money += bet;
         wallet.value = money;
         even++;
-        //return;
+        console.log(pcon, dcon, "Push");
+        return;
     } else if (pcon > 21) {
         //負け処理
+        calling.style.display = "block";
         calling.innerHTML = 'You lose.';
-        //money -= bet;
         wallet.value = money;
         lose++;
-        //return;
+        return;
     } else if (dcon > 21) {
+        calling.style.display = "block";
         calling.innerHTML = 'You win!';
         money += bet * 2;
         wallet.value = money;
         win++;
-        // return;
+        console.log(pcon, dcon, "win");
+        return;
     } else {
-        //return;
+        console.log(pcon, dcon, "nothing");
     }
 }
 //game_playここまで
