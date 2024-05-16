@@ -1,3 +1,4 @@
+// カード配布関数
 function hand() {
     //二次元配列でトランプのデッキを作る
     let arr = [];
@@ -34,6 +35,23 @@ function suuchi(num) {
         let kaz = str[1] + str[2];
         return Number(kaz);
     }
+}
+
+// 掛け金処理の関数
+function kakekinshori() {
+    let counter = 0;
+    bet = Number(betbox.value);
+    money1 = money;
+    money = money - bet;
+    if (money < 0) {
+        betmsg.innerHTML = "Bet only what you have.";
+        bet = money1;
+        betbox.value = bet;
+        money = 0;
+    }
+    wallet.value = money;
+    pcon = 0, dcon = 0;
+    counter++;
 }
 
 // 初回の配布（2枚ずつ）
@@ -86,6 +104,7 @@ start.addEventListener('click', function (e) {
     target.removeEventListener('mouseup', arguments.callee, false);
 });
 
+// ゲーム開始・初回配布（2枚ずつ）の関数
 function game_play() {
     pcon = 0; dcon = 0;
     pl = 0; pn = 0;
@@ -95,8 +114,8 @@ function game_play() {
     replay.style.display = "none";
     hit.style.display = "block";
     stand.style.display = "block";
-    // 初回配札
 
+    // 初回配札
     for (l = 0; l <= 1; l++) {
         // プレイヤー
         pl = hand();
@@ -105,22 +124,13 @@ function game_play() {
         pn = suuchi(pl);
         if (pn != "A") {
             pcon += pn;
-            console.log("player", pn, pcon);
+            //console.log("player", pn, pcon);
         } else if (pcon <= 10) {
             pcon += 11;
-            console.log("player", pn, pcon);
+            //console.log("player", pn, pcon);
         } else {
             pcon += 1;
-            console.log("player", pn, pcon);
-        }
-        if (pcon > 21) {
-            //負け処理
-            calling.innerHTML = 'You lose.';
-            //money -= bet;
-            wallet.value = money;
-            lose++;
-            //break;//この後処理が必要
-            return;
+            //console.log("player", pn, pcon);
         }
 
         // ディーラー
@@ -134,12 +144,38 @@ function game_play() {
         }
         dn = suuchi(dl);
         if (dn != "A") {
-            dcon += dn; console.log("dealer", dn, dcon);
+            dcon += dn; //console.log("dealer", dn, dcon);
         } else if (dcon <= 10) {
-            dcon += 11; console.log("dealer", dn, dcon);
+            dcon += 11; //console.log("dealer", dn, dcon);
         } else {
-            dcon += 1; console.log("dealer", dn, dcon);
+            dcon += 1; //console.log("dealer", dn, dcon);
         }
+    }
+    //初回配布ここまで
+
+    //初回配布の時点での21オーバー判定
+    if ((pcon > 21) && (dcon > 21)) {
+        //引き分け処理
+        calling.innerHTML = 'Push. Neither Wins.';
+        money += bet;
+        wallet.value = money;
+        even++;
+        //return;
+    } else if (pcon > 21) {
+        //負け処理
+        calling.innerHTML = 'You lose.';
+        //money -= bet;
+        wallet.value = money;
+        lose++;
+        //return;
+    } else if (dcon > 21) {
+        calling.innerHTML = 'You win!';
+        money += bet * 2;
+        wallet.value = money;
+        win++;
+        // return;
+    } else {
+        //return;
     }
 }
 //game_playここまで
@@ -247,20 +283,3 @@ stand.addEventListener('mouseup', function () {
         });
     }
 });
-
-
-function kakekinshori() {
-    let counter = 0;
-    bet = Number(betbox.value);
-    money1 = money;
-    money = money - bet;
-    if (money < 0) {
-        betmsg.innerHTML = "Bet only what you have.";
-        bet = money1;
-        betbox.value = bet;
-        money = 0;
-    }
-    wallet.value = money;
-    pcon = 0, dcon = 0;
-    counter++;
-}
