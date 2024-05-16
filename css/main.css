@@ -29,14 +29,15 @@ main {
     justify-content: center;
     flex-wrap: wrap;
 }
-a {
-    font-weight: bold;
-    color: rgb(200, 200, 230);}
-a:hover {color:rgb(225, 225, 255);}
-a:active {color: coral;}
-a:visited {color: rgb(150, 150, 180);}
+
 section {
     margin: 10px;
+}
+#direction, #schedule {
+    display: flex;
+    width: 600px;
+    justify-content: space-around;
+    margin: 40px;
 }
 ul {
     position: relative;
@@ -55,7 +56,7 @@ li {
 
 #links {
     display: flex;
-    width: 480px;
+    width: 800px;
     justify-content: space-around;
     margin: 40px;
 }
@@ -81,4 +82,25 @@ footer {
 
 footer p {
     padding-right: 40px;
+}
+
+button {
+    font-size: 21px;
+    font-weight: 700;
+    width: 400px;
+    height: 40px;
+    margin: 10px; 
+    filter:drop-shadow(4px 4px 4px rgb(10 10 10));
+    border-radius: 10px;
+    background-color: #8888;
+}
+
+button:hover {
+    translate: 1px 1px;
+    filter:drop-shadow(2px 2px 2px rgb(10 10 10));
+}
+
+button:active {
+    translate: 2px 2px;
+    filter:drop-shadow(2px 2px 2px rgb(10 10 10));
 }
