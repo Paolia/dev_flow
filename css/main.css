@@ -33,12 +33,15 @@ main {
 section {
     margin: 10px;
 }
-#direction, #schedule {
+
+#direction {
     display: flex;
-    width: 600px;
-    justify-content: space-around;
-    margin: 40px;
+    justify-content: center;
+    align-content: space-around;
+    width: 800px;
+    margin: 20px;
 }
+
 ul {
     position: relative;
     left: 15px;
@@ -47,6 +50,15 @@ li {
     list-style-type: disc;
     margin: 8px;
 }
+
+.head {
+    list-style-type: none;
+    margin: 8px;
+    translate: -20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .sublist {
     list-style-type: circle;
     position: relative;
@@ -85,22 +97,28 @@ footer p {
 }
 
 button {
-    font-size: 21px;
-    font-weight: 700;
-    width: 400px;
-    height: 40px;
+    color: #111;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    width: 170px;
+    height:40px;
     margin: 10px; 
-    filter:drop-shadow(4px 4px 4px rgb(10 10 10));
+    filter:drop-shadow(5px 5px 3px rgb(10 10 10));
     border-radius: 10px;
-    background-color: #8888;
+    background-color: #ccc;
 }
 
 button:hover {
+    color: rgb(200, 60, 10);
+    background-color: #aaa;
     translate: 1px 1px;
-    filter:drop-shadow(2px 2px 2px rgb(10 10 10));
+    filter:drop-shadow(4px 4px 2px rgb(10 10 10));
 }
 
 button:active {
-    translate: 2px 2px;
-    filter:drop-shadow(2px 2px 2px rgb(10 10 10));
+    color: rgb(70, 70, 70);
+    background-color: #888;
+    translate: 3px 3px;
+    filter:drop-shadow(3px 3px 2px rgb(0 0 0));
 }
