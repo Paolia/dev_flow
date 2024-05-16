@@ -1,5 +1,6 @@
 body {
     background-color: rgb(9, 103, 54);
+    background-image: url("../img/tartanM.png");
     color: #eee;
 }
 
@@ -28,6 +29,12 @@ main {
     justify-content: center;
     flex-wrap: wrap;
 }
+a {
+    font-weight: bold;
+    color: rgb(200, 200, 230);}
+a:hover {color:rgb(225, 225, 255);}
+a:active {color: coral;}
+a:visited {color: rgb(150, 150, 180);}
 section {
     margin: 10px;
 }
@@ -44,6 +51,13 @@ li {
     position: relative;
     left: 15px;
     font-size: 13px;
+}
+
+#links {
+    display: flex;
+    width: 480px;
+    justify-content: space-around;
+    margin: 40px;
 }
 
 footer {
