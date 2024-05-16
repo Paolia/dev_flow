@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Game</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/sanitize.css" />
+    <link rel="stylesheet" href="css/blackjack.css">
+</head>
+
+<body>
+    <header>
+        <h1>Black Jack</h1>
+    </header>
+    <main>
+        <section id="dealer_deck">
+            <div id="d0"></div>
+            <div id="d1"></div>
+            <div id="d2"></div>
+            <div id="d3"></div>
+            <div id="d4"></div>
+            <div id="d5"></div>
+        </section>
+        <section id="player_deck">
+            <div id="p0"></div>
+            <div id="p1"></div>
+            <div id="p2"></div>
+            <div id="p3"></div>
+            <div id="p4"></div>
+            <div id="p5"></div>
+        </section>
+        <section id="play">
+            <button id="hit">HIT</button>
+            <div id="call"></div>
+            <button id="stand">STAND</button>
+            <button id="start">START</button>
+            <button id="replay">REPLAY</button>
+        </section>
+        <section id="betting">
+            <div>
+                Your wallet: <input type="text" id="wallet" name="wallet"> dollars.
+            </div>
+            <div id="betmsg"></div>
+            <div>
+                Your bet: <input type="text" id="betbox" name="betbox"> dollars.
+            </div>
+        </section>
+    </main>
+    <script src="js/blackjack.js"></script>
+
+    <footer>
+        <p>&copy; 2024 Tamio Kuratomi</p>
+    </footer>
+</body>
+
+</html>
