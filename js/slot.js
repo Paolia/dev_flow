@@ -385,7 +385,7 @@ const result = document.getElementById('result');
 
 if(localStorage.getItem("score")){
   const s = localStorage.getItem("score");
-  result.innerHTML = "最高記録：" + s + " コ";
+  result.innerHTML = "記録：" + s + " コ";
 }
 
 const save = document.getElementById("save");
@@ -396,7 +396,7 @@ save.addEventListener("click", () =>{
       localStorage.setItem("score", score);
       alert("スコア：" + score + "を保存しました");
       const s = localStorage.getItem("score");
-      result.innerHTML = "最高記録：" + s + " コ";
+      result.innerHTML = "記録：" + s + " コ";
     } else {
       alert("スコア：" + score + "は最高記録を超えていないため保存しません。");
     }
